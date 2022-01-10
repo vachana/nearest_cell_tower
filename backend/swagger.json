@@ -1,0 +1,107 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "nearest_cell_tower",
+      "description": "The City of Futurpruf is evaluating the cell phone coverage for key buildings in the community by evaluating the distance to the nearest cell tower. This requires a web application that, for a given set of buildings and a set of cell towers in a city, and the x-y coordinates of each, allows the user to specify a building, and return the nearest cell tower to that building.",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "buildings",
+        "description": "API for buildings"
+      },
+      {
+        "name": "towers",
+        "description": "API to result - closest tower"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/buildings": {
+          "get": {
+            "tags": ["Buildings"],
+            "summary": "Get all buildings",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/Buildings"
+                }
+              }
+            }
+          }
+        },
+        "/tower": {
+            "get": {
+              "tags": ["Towers"],
+              "summary": "Get result - closest tower",
+              "parameters": [
+                {
+                  "name": "ID",
+                  "in": "query",
+                  "description": "User that we want to create",
+                  "required": true,
+                  "schema": {
+                      "type": "string"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK",
+                  "schema": {
+                    "$ref": "#/definitions/Tower"
+                  }
+                }
+              }
+            }
+        }
+    },
+    "definitions": {
+        "Building": {
+            "required": ["Name","X_Coordinate","Y_Coordinate"],
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "X_Coordinate": {
+                    "type": "number"
+                },
+                "Y_Coordinate": {
+                    "type": "number"
+                }
+            }
+        },
+        "Buildings": {
+            "type": "array",
+            "$ref": "#/definitions/Building"
+        },
+        "Tower": {
+            "required": ["ID","Name","X_Coordinate","Y_Coordinate"],
+            "properties": {
+                "ID": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "X Coordinate": {
+                    "type": "number"
+                },
+                "Y Coordinate": {
+                    "type": "number"
+                }
+            }
+        }
+       
+    }
+      
+  }

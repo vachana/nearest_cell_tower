@@ -1,0 +1,15 @@
+{
+  "name": "nearest_cell_tower",
+  "version": "1.0.0",
+  "description": "The City of Futurpruf is evaluating the cell phone coverage for key buildings in the community by evaluating the distance to the nearest cell tower. This requires a web application that, for a given set of buildings and a set of cell towers in a city, and the x-y coordinates of each, allows the user to specify a building, and return the nearest cell tower to that building.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "vachana",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "swagger-ui-express": "^4.3.0"
+  }
+}
