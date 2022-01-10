@@ -1,0 +1,1 @@
+docker build . -t backend_cell_tower_image
