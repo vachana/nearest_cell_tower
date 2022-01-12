@@ -9,6 +9,7 @@
   "author": "vachana",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.2",
     "swagger-ui-express": "^4.3.0"
   }
