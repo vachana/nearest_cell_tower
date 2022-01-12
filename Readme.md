@@ -26,7 +26,7 @@
 ./build.sh
 ./deploy.sh
   ```
-* You should have backend running on http://localhost:8080
+* You can access your frontend on http://localhost:8080
 
 ## Tech stack
 
