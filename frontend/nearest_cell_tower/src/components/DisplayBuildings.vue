@@ -1,22 +1,32 @@
 <template>
-  <div class="buildings-display">
-   
-
+<v-container
+    class="spacing-playground pa-1600"
+    
+  >
+  <div>
+    <template>
+     
+      <v-text-field
+        v-model="search"
+        label="Search"
+        class="mx-4"
+      ></v-text-field>
+    </template>
     <v-data-table
       :headers="headers"
       :items="buildings"
       sort-by="['building_id', 'building_name']"
       :items-per-page="5"
+      :search="search"
       class="['elevation-1' && item.selected && 'selected']"
+      :custom-filter="filterOnlyCapsText"
       @click:row="handleClick"
-      
     >
-  
     </v-data-table>
-      <tower ref="modal"></tower>
+    <tower ref="modal"></tower>
   </div>
+</v-container>
 </template>
-
 
 <style>
 .selected {
@@ -24,18 +34,19 @@
 }
 </style>
 
-
 <script>
 import axios from "axios";
-import Tower from './Tower.vue';
+import Tower from "./Tower.vue";
 export default {
   components: { Tower },
   name: "buildings-display",
   mounted: function () {
     this.getBuildings();
+    console.log(process.env.BUILDINGS_API)
   },
   data: function () {
     return {
+      search: "",
       buildings: [],
       temp: "",
       headers: [
@@ -57,16 +68,23 @@ export default {
     };
   },
   methods: {
+    filterOnlyCapsText(value, search) {
+      return (
+        value != null &&
+        search != null &&
+        typeof value === "string" &&
+        value.toString().toLocaleUpperCase().indexOf(search.toLocaleUpperCase()) !== -1
+      );
+    },
+
     handleClick(value) {
       console.log("onclick", value.building_id);
       this.$refs.modal.showModal(value);
-
-
     },
 
     getBuildings: function () {
       var self = this;
-      const url = "http://localhost:3000/buildings";
+      const url = process.env.VUE_APP_ROOT_API+"buildings";
       axios
         .get(url, {
           dataType: "json",

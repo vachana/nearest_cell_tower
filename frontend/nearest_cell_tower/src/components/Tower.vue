@@ -3,9 +3,9 @@
     <v-row justify="center">
       <v-dialog v-model="dialog" max-width="290">
         <v-card>
-          <v-card-title><br /></v-card-title>
+          <v-card-title class="text-align-center">NEAREST CELL TOWER</v-card-title>
           <v-card-text
-            >The closest tower to {{ building_name }} is {{ tower.Name }} which
+            ><br>The closest tower to {{ building_name }} is {{ tower.Name }} which
             is {{ tower.Distance }}m away.</v-card-text
           >
 
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     getTower(id) {
-      const url = "http://localhost:3000/tower?ID=" + id;
+      const url = process.env.VUE_APP_ROOT_API+"tower?ID=" + id;
       axios
         .get(url, {
           dataType: "json",
