@@ -1,31 +1,27 @@
 <template>
-<v-container
-    class="spacing-playground pa-1600"
-    
-  >
-  <div>
-    <template>
-     
-      <v-text-field
-        v-model="search"
-        label="Search"
-        class="mx-4"
-      ></v-text-field>
-    </template>
-    <v-data-table
-      :headers="headers"
-      :items="buildings"
-      sort-by="['building_id', 'building_name']"
-      :items-per-page="5"
-      :search="search"
-      class="['elevation-1' && item.selected && 'selected']"
-      :custom-filter="filterOnlyCapsText"
-      @click:row="handleClick"
-    >
-    </v-data-table>
-    <tower ref="modal"></tower>
-  </div>
-</v-container>
+  <v-container class="spacing-playground pa-1600">
+    <div>
+      <template>
+        <v-text-field
+          v-model="search"
+          label="Search"
+          class="mx-4"
+        ></v-text-field>
+      </template>
+      <v-data-table
+        :headers="headers"
+        :items="buildings"
+        sort-by="['building_id', 'building_name']"
+        :items-per-page="5"
+        :search="search"
+        class="['elevation-1' && item.selected && 'selected']"
+        :custom-filter="filterOnlyCapsText"
+        @click:row="handleClick"
+      >
+      </v-data-table>
+      <tower ref="modal"></tower>
+    </div>
+  </v-container>
 </template>
 
 <style>
@@ -42,7 +38,7 @@ export default {
   name: "buildings-display",
   mounted: function () {
     this.getBuildings();
-    console.log(process.env.BUILDINGS_API)
+    console.log(process.env.BUILDINGS_API);
   },
   data: function () {
     return {
@@ -73,7 +69,10 @@ export default {
         value != null &&
         search != null &&
         typeof value === "string" &&
-        value.toString().toLocaleUpperCase().indexOf(search.toLocaleUpperCase()) !== -1
+        value
+          .toString()
+          .toLocaleUpperCase()
+          .indexOf(search.toLocaleUpperCase()) !== -1
       );
     },
 
@@ -84,7 +83,7 @@ export default {
 
     getBuildings: function () {
       var self = this;
-      const url = process.env.VUE_APP_ROOT_API+"buildings";
+      const url = process.env.VUE_APP_ROOT_API + "buildings";
       axios
         .get(url, {
           dataType: "json",

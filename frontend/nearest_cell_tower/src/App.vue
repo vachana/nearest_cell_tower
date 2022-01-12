@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-       <h1>
-      <b><u>BUILDINGS</u></b>
-    </h1>
-    <br>
-    <h2>Click on the building to find the nearest cell tower</h2>
-    <br>
+      <h1>
+        <b><u>BUILDINGS</u></b>
+      </h1>
+      <br />
+      <h2>Click on the building to find the nearest cell tower</h2>
+      <br />
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
